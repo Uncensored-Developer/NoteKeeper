@@ -1,5 +1,6 @@
 package com.warchief.notekeeper
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -14,7 +15,8 @@ class NoteListActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         fab.setOnClickListener { view ->
-
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 }
