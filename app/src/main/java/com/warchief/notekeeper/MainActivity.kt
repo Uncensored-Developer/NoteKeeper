@@ -1,7 +1,6 @@
 package com.warchief.notekeeper
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
@@ -27,7 +26,8 @@ class MainActivity : AppCompatActivity() {
 
         spinnerCourses.adapter = adapterCourses
 
-        notePosition = intent.getIntExtra(EXTRA_NOTE_POSITION, POSITION_NOT_SET)
+        notePosition = savedInstanceState?.getInt(NOTE_POSITION, POSITION_NOT_SET) ?:
+            intent.getIntExtra(NOTE_POSITION, POSITION_NOT_SET)
 
         if (notePosition != POSITION_NOT_SET) displayNote()
         else {
@@ -92,5 +92,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         return super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(NOTE_POSITION, notePosition)
     }
 }
