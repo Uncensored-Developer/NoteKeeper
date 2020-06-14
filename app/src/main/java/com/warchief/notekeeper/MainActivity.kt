@@ -64,5 +64,17 @@ class MainActivity : AppCompatActivity() {
     private fun moveNext() {
         ++notePosition
         displayNote()
+        invalidateOptionsMenu()
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+
+        if (notePosition >= DataManager.notes.lastIndex) {
+            val menuItem = menu?.findItem(R.id.action_next)
+            menuItem?.icon = getDrawable(R.drawable.ic_block_24)
+            menuItem?.isEnabled = false
+        }
+
+        return super.onPrepareOptionsMenu(menu)
     }
 }
