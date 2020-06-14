@@ -7,6 +7,7 @@ object DataManager {
 
     init {
         initializeCourses()
+        initializeNotes()
     }
 
     private fun initializeCourses() {
@@ -21,6 +22,13 @@ object DataManager {
 
         course = CourseInfo("java_core", "Java Fundamentals: The core platform")
         courses[course.courseId] = course
+    }
+
+    private fun initializeNotes() {
+        for ((k,v) in courses) {
+            val note = NoteInfo(v, k, v.title)
+            notes.add(note)
+        }
     }
 
 }
