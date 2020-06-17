@@ -31,4 +31,8 @@ object DataManager {
         }
     }
 
+    fun addNote(course: CourseInfo, noteTitle: String, noteText: String): Int {
+        return 0
+    }
+
 }
