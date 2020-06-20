@@ -22,6 +22,12 @@ object DataManager {
 
         course = CourseInfo("java_core", "Java Fundamentals: The core platform")
         courses[course.courseId] = course
+
+        course = CourseInfo("java_core0", "Java Fundamentals: The core platform")
+        courses[course.courseId] = course
+
+        course = CourseInfo("java_core1", "Java Fundamentals: The core platform")
+        courses[course.courseId] = course
     }
 
     private fun initializeNotes() {
