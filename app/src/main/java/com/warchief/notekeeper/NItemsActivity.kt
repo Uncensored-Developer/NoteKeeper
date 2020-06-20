@@ -1,5 +1,6 @@
 package com.warchief.notekeeper
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -13,6 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import kotlinx.android.synthetic.main.activity_note_list.*
 
 class NItemsActivity : AppCompatActivity() {
 
@@ -24,11 +26,10 @@ class NItemsActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        fab.setOnClickListener {
+            startActivity(Intent(this, NoteActivity::class.java))
         }
+
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
