@@ -15,22 +15,16 @@ import kotlinx.android.synthetic.main.fragment_notes.*
 
 class NotesFragment : Fragment() {
 
+    private val noteLayoutManager by lazy { LinearLayoutManager(activity) }
+
+    private val noteRecyclerAdapter by lazy { NoteRecyclerAdapter(activity!!, DataManager.notes) }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_notes, container, false)
-    }
-
-    private val noteLayoutManager by lazy { LinearLayoutManager(activity) }
-
-    private val noteRecyclerAdapter by lazy { NoteRecyclerAdapter(activity!!, DataManager.notes) }
-
-    private val courseLayoutManager by lazy { GridLayoutManager(activity, 2) }
-
-    private val courseRecyclerAdapter by lazy {
-        CourseRecyclerAdapter(activity!!, DataManager.courses.values.toList())
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
