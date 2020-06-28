@@ -17,4 +17,10 @@
             android:label="@string/menu_courses"
             tools:layout="@layout/fragment_courses" />
 
+    <fragment
+            android:id="@+id/nav_recent_notes"
+            android:name="com.warchief.notekeeper.ui.recent_notes.RecentlyViewedNotesFragment"
+            android:label="@string/menu_recent_notes"
+            tools:layout="@layout/fragment_recently_viewed_notes" />
+
 </navigation>
