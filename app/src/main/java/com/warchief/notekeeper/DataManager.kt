@@ -4,6 +4,8 @@ object DataManager {
 
     val courses = HashMap<String, CourseInfo>()
     val notes = ArrayList<NoteInfo>()
+    private const val maxRecentlyViewedNotes = 5
+    val recentNotes = ArrayList<NoteInfo>(maxRecentlyViewedNotes)
 
     init {
         initializeCourses()
@@ -41,6 +43,19 @@ object DataManager {
         val note = NoteInfo(course, noteTitle, noteText)
         notes.add(note)
         return notes.lastIndex
+    }
+
+    fun addToRecentNotes(note: NoteInfo) {
+        val existingIndex = recentNotes.indexOf(note)
+        if (existingIndex == -1) {
+            recentNotes.add(0, note)
+            for (index in recentNotes.lastIndex downTo maxRecentlyViewedNotes)
+                recentNotes.removeAt(index)
+        } else {
+            for (index in (existingIndex - 1) downTo 0)
+                recentNotes[index + 1] = recentNotes[index]
+            recentNotes[0] = note
+        }
     }
 
 }

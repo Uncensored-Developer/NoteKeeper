@@ -15,7 +15,7 @@ class CourseRecyclerAdapter(
 ):
     RecyclerView.Adapter<CourseRecyclerAdapter.ViewHolder>(){
 
-    private val layoutInflater = LayoutInflater.from(context)
+        private val layoutInflater = LayoutInflater.from(context)
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textCourse: TextView = itemView.textCourse

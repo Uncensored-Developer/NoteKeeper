@@ -7,17 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.warchief.notekeeper.CourseRecyclerAdapter
-import com.warchief.notekeeper.DataManager
-import com.warchief.notekeeper.NoteRecyclerAdapter
-import com.warchief.notekeeper.R
+import com.warchief.notekeeper.*
 import kotlinx.android.synthetic.main.fragment_notes.*
 
-class NotesFragment : Fragment() {
+open class NotesFragment : Fragment() {
 
     private val noteLayoutManager by lazy { LinearLayoutManager(activity) }
 
-    private val noteRecyclerAdapter by lazy { NoteRecyclerAdapter(activity!!, DataManager.notes) }
+    protected open val noteRecyclerAdapter by lazy {
+        NoteRecyclerAdapter(activity!!, DataManager.notes)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

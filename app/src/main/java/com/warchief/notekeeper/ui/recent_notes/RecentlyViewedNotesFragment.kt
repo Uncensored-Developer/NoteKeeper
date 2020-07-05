@@ -5,13 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.warchief.notekeeper.DataManager
+import com.warchief.notekeeper.NoteRecyclerAdapter
 import com.warchief.notekeeper.R
+import com.warchief.notekeeper.RecentNotesRecyclerAdapter
+import kotlinx.android.synthetic.main.fragment_notes.*
+import kotlinx.android.synthetic.main.fragment_recently_viewed_notes.*
 
 class RecentlyViewedNotesFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private val noteLayoutManager by lazy { LinearLayoutManager(activity) }
 
+    private val noteRecyclerAdapter by lazy {
+        RecentNotesRecyclerAdapter(activity!!, DataManager.recentNotes)
     }
 
     override fun onCreateView(
@@ -20,6 +27,18 @@ class RecentlyViewedNotesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_recently_viewed_notes, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        recentNotes.layoutManager = noteLayoutManager
+        recentNotes.adapter = noteRecyclerAdapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        recentNotes.adapter?.notifyDataSetChanged()
     }
 
 }

@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.item_course_list.view.*
+import kotlinx.android.synthetic.main.item_course_list.view.textCourse
+import kotlinx.android.synthetic.main.item_note_list.view.*
 
 class NoteRecyclerAdapter(
     private val context: Context,
@@ -18,13 +21,14 @@ class NoteRecyclerAdapter(
 
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val textCourse = itemView.findViewById<TextView>(R.id.textCourse)
-        val textTitle = itemView.findViewById<TextView>(R.id.textTitle)
+        val textCourse: TextView = itemView.textCourse
+        val textTitle: TextView = itemView.textTitle
         var notePosition = 0
 
         init {
             itemView.setOnClickListener {
                 val intent = Intent(context, NoteActivity::class.java)
+                DataManager.addToRecentNotes(notes[notePosition])
                 intent.putExtra(NOTE_POSITION, notePosition)
                 context.startActivity(intent)
             }
